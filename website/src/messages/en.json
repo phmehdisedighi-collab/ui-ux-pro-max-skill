@@ -1,0 +1,116 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About",
+    "book": "Book a Session",
+    "login": "Login",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  },
+  "hero": {
+    "badge": "AI Consultant",
+    "title": "Transform Your Business",
+    "titleHighlight": "With Artificial Intelligence",
+    "subtitle": "Strategic AI consulting for executives and businesses ready to lead in the age of intelligence.",
+    "cta": "Book a Consultation",
+    "ctaSecondary": "Learn More"
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Tailored AI consulting solutions for your goals",
+    "consultation": {
+      "title": "AI Consultation",
+      "description": "One-on-one strategic sessions to guide your AI adoption journey.",
+      "badge": "Available Now"
+    },
+    "workshop": {
+      "title": "AI Workshop",
+      "description": "Hands-on team training sessions for AI tools and workflows.",
+      "badge": "Coming Soon"
+    },
+    "webinar": {
+      "title": "Online Classes",
+      "description": "Live and recorded webinars on AI strategy and implementation.",
+      "badge": "Coming Soon"
+    }
+  },
+  "about": {
+    "title": "About",
+    "subtitle": "Your AI Strategy Partner",
+    "placeholder": "Bio coming soon — a seasoned AI consultant helping executives and businesses harness the power of artificial intelligence for real-world results.",
+    "stats": {
+      "clients": "Clients",
+      "sessions": "Sessions",
+      "industries": "Industries"
+    }
+  },
+  "booking": {
+    "title": "Book a Consultation",
+    "subtitle": "Select your session type, choose a time, and pay securely.",
+    "selectService": "Select Session Type",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "platform": "Platform",
+    "googleMeet": "Google Meet",
+    "zoom": "Zoom",
+    "yourInfo": "Your Information",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "notes": "Notes (optional)",
+    "pay": "Pay & Confirm",
+    "processing": "Processing...",
+    "success": "Booking Confirmed!",
+    "successMessage": "Check your email for the meeting link.",
+    "min30": "30-Minute Session",
+    "min60": "60-Minute Session",
+    "priceLabel": "Session Price",
+    "placeholder30": "Quick strategy review or focused Q&A",
+    "placeholder60": "Deep-dive consultation and roadmap planning"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Create Account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full Name",
+    "loginCta": "Login",
+    "registerCta": "Create Account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "forgotPassword": "Forgot password?"
+  },
+  "dashboard": {
+    "title": "My Bookings",
+    "upcoming": "Upcoming Sessions",
+    "past": "Past Sessions",
+    "noBookings": "No bookings yet",
+    "bookNow": "Book a Session",
+    "status": {
+      "pending": "Pending Payment",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "joinMeeting": "Join Meeting",
+    "meetingLink": "Meeting Link"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "back": "Back",
+    "next": "Next",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  }
+}
