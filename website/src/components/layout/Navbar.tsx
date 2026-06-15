@@ -5,10 +5,12 @@ import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { getMockUser, clearMockUser, type MockUser } from '@/lib/mock-auth'
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [user, setUser] = useState<MockUser | null>(null)
   const locale = useLocale()
   const t = useTranslations('nav')
   const pathname = usePathname()
@@ -20,6 +22,16 @@ export function Navbar() {
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
+
+  useEffect(() => {
+    setUser(getMockUser())
+  }, [pathname])
+
+  const handleLogout = () => {
+    clearMockUser()
+    setUser(null)
+    router.push(`/${locale}`)
+  }
 
   const otherLocale = locale === 'fa' ? 'en' : 'fa'
   const switchLocale = () => {
@@ -71,9 +83,23 @@ export function Navbar() {
             {otherLocale === 'fa' ? 'فا' : 'EN'}
           </button>
 
-          <Link href={`/${locale}/auth/login`}>
-            <Button variant="ghost" size="sm">{t('login')}</Button>
-          </Link>
+          {user ? (
+            <>
+              <Link href={`/${locale}/dashboard`}>
+                <Button variant="ghost" size="sm">{t('dashboard')}</Button>
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-sm text-[#9B9489] hover:text-[#F7F3EE] transition-colors cursor-pointer"
+              >
+                {t('logout')}
+              </button>
+            </>
+          ) : (
+            <Link href={`/${locale}/auth/login`}>
+              <Button variant="ghost" size="sm">{t('login')}</Button>
+            </Link>
+          )}
           <Link href={`/${locale}/book`}>
             <Button variant="gold" size="sm">{t('book')}</Button>
           </Link>
@@ -112,9 +138,23 @@ export function Navbar() {
             <button onClick={switchLocale} className="text-[#C9A84C] text-sm text-start py-2">
               {otherLocale === 'fa' ? 'فارسی' : 'English'}
             </button>
-            <Link href={`/${locale}/auth/login`} onClick={() => setMobileOpen(false)}>
-              <Button variant="ghost" className="w-full justify-start">{t('login')}</Button>
-            </Link>
+            {user ? (
+              <>
+                <Link href={`/${locale}/dashboard`} onClick={() => setMobileOpen(false)}>
+                  <Button variant="ghost" className="w-full justify-start">{t('dashboard')}</Button>
+                </Link>
+                <button
+                  onClick={() => { handleLogout(); setMobileOpen(false) }}
+                  className="text-[#9B9489] hover:text-[#F7F3EE] text-start py-2"
+                >
+                  {t('logout')}
+                </button>
+              </>
+            ) : (
+              <Link href={`/${locale}/auth/login`} onClick={() => setMobileOpen(false)}>
+                <Button variant="ghost" className="w-full justify-start">{t('login')}</Button>
+              </Link>
+            )}
             <Link href={`/${locale}/book`} onClick={() => setMobileOpen(false)}>
               <Button variant="gold" className="w-full">{t('book')}</Button>
             </Link>

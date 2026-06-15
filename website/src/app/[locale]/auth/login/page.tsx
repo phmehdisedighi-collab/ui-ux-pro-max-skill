@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { createClient } from '@/lib/supabase'
+import { mockLogin } from '@/lib/mock-auth'
 
 export default function LoginPage() {
   const t = useTranslations('auth')
@@ -20,10 +20,10 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    startTransition(async () => {
-      const supabase = createClient()
-      const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
-      if (authError) {
+    startTransition(() => {
+      // Demo mode — accepts any valid-looking credentials
+      const user = mockLogin(email, password)
+      if (!user) {
         setError(locale === 'fa' ? 'ایمیل یا رمز عبور اشتباه است' : 'Invalid email or password')
       } else {
         router.push(`/${locale}/dashboard`)
@@ -90,6 +90,13 @@ export default function LoginPage() {
             </Link>
           </div>
         </div>
+
+        {/* Demo notice */}
+        <p className="text-center text-xs text-[#6B6560] mt-6">
+          {locale === 'fa'
+            ? 'نسخه نمایشی — هر ایمیل و رمزی پذیرفته می‌شود'
+            : 'Demo mode — any email and password works'}
+        </p>
       </div>
     </div>
   )

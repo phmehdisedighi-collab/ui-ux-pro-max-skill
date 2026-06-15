@@ -1,43 +1,49 @@
-import { redirect } from 'next/navigation'
-import { createServerSupabaseClient } from '@/lib/supabase-server'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useTranslations, useLocale } from 'next-intl'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Badge } from '@/components/ui/badge'
 import Link from 'next/link'
 import { formatDateTime } from '@/lib/utils'
-import { getTranslations } from 'next-intl/server'
+import { getMockUser, type MockUser } from '@/lib/mock-auth'
+import { MOCK_BOOKINGS } from '@/lib/mock-data'
 
-interface Props {
-  params: Promise<{ locale: string }>
-}
+type Variant = 'gold' | 'success' | 'muted' | 'outline'
 
-export default async function DashboardPage({ params }: Props) {
-  const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'dashboard' })
-  const supabase = await createServerSupabaseClient()
+export default function DashboardPage() {
+  const t = useTranslations('dashboard')
+  const locale = useLocale()
+  const router = useRouter()
+  const [user, setUser] = useState<MockUser | null>(null)
+  const [ready, setReady] = useState(false)
 
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect(`/${locale}/auth/login`)
+  useEffect(() => {
+    const u = getMockUser()
+    if (!u) {
+      router.replace(`/${locale}/auth/login`)
+      return
+    }
+    setUser(u)
+    setReady(true)
+  }, [locale, router])
 
-  const { data: bookingsRaw } = await supabase
-    .from('bookings')
-    .select('*, services(*), available_slots(*)')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
+  if (!ready || !user) {
+    return (
+      <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
+  }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const bookings: any[] = bookingsRaw || []
+  const now = new Date()
+  const upcoming = MOCK_BOOKINGS.filter((b) => b.status === 'confirmed' && b.date > now)
+  const past = MOCK_BOOKINGS.filter((b) => b.status === 'completed' || b.date <= now)
 
-  const upcoming = bookings.filter((b) =>
-    b.status === 'confirmed' && new Date(b.available_slots?.start_time || '') > new Date()
-  )
-
-  const past = bookings.filter((b) =>
-    b.status === 'completed' || new Date(b.available_slots?.start_time || '') <= new Date()
-  )
-
-  const statusBadge = (status: string) => {
-    const map: Record<string, 'gold' | 'success' | 'muted' | 'outline'> = {
+  const statusBadge = (status: string): Variant => {
+    const map: Record<string, Variant> = {
       confirmed: 'gold',
       completed: 'success',
       pending: 'outline',
@@ -110,39 +116,29 @@ export default async function DashboardPage({ params }: Props) {
   )
 }
 
-function BookingCard({
-  booking,
-  locale,
-  t,
-  statusBadge,
-  past = false,
-}: {
-  booking: any
+interface BookingCardProps {
+  booking: (typeof MOCK_BOOKINGS)[number]
   locale: string
-  t: any
-  statusBadge: (s: string) => 'gold' | 'success' | 'muted' | 'outline'
+  t: (key: string) => string
+  statusBadge: (s: string) => Variant
   past?: boolean
-}) {
-  const startTime = booking.available_slots?.start_time
-    ? new Date(booking.available_slots.start_time)
-    : null
+}
 
+function BookingCard({ booking, locale, t, statusBadge, past = false }: BookingCardProps) {
   return (
     <div className={`card-luxury rounded-lg p-6 border transition-all ${past ? 'opacity-60' : 'gold-border hover:border-[rgba(201,168,76,0.4)]'}`}>
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-3 mb-2">
             <h3 className="font-semibold text-[#F7F3EE]">
-              {locale === 'fa' ? booking.services?.name_fa : booking.services?.name_en}
+              {locale === 'fa' ? booking.service.name_fa : booking.service.name_en}
             </h3>
             <Badge variant={statusBadge(booking.status)}>
               {t(`status.${booking.status}`)}
             </Badge>
           </div>
 
-          {startTime && (
-            <p className="text-sm text-[#9B9489]">{formatDateTime(startTime, locale)}</p>
-          )}
+          <p className="text-sm text-[#9B9489]">{formatDateTime(booking.date, locale)}</p>
 
           <p className="text-xs text-[#6B6560] mt-1">
             {booking.platform === 'google_meet' ? 'Google Meet' : 'Zoom'}

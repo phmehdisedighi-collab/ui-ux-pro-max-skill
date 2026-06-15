@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { createClient } from '@/lib/supabase'
+import { mockRegister } from '@/lib/mock-auth'
 
 export default function RegisterPage() {
   const t = useTranslations('auth')
@@ -17,51 +17,21 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    startTransition(async () => {
-      const supabase = createClient()
-      const { error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { full_name: name },
-        },
-      })
-      if (authError) {
-        setError(authError.message)
+    startTransition(() => {
+      // Demo mode — stores user in localStorage
+      const user = mockRegister(name, email, password)
+      if (!user) {
+        setError(locale === 'fa'
+          ? 'لطفاً همه فیلدها را پر کنید (رمز حداقل ۶ کاراکتر)'
+          : 'Please fill all fields (password min 6 chars)')
       } else {
-        setSuccess(true)
+        router.push(`/${locale}/dashboard`)
       }
     })
-  }
-
-  if (success) {
-    return (
-      <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="w-16 h-16 rounded-full bg-[rgba(201,168,76,0.12)] flex items-center justify-center mx-auto mb-6 gold-border">
-            <svg className="w-8 h-8 text-[#C9A84C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h2 className="text-2xl font-semibold text-[#F7F3EE] mb-3">
-            {locale === 'fa' ? 'حساب ایجاد شد!' : 'Account Created!'}
-          </h2>
-          <p className="text-[#9B9489] mb-8">
-            {locale === 'fa'
-              ? 'ایمیل تأیید به آدرس شما ارسال شد. بعد از تأیید وارد شوید.'
-              : 'A confirmation email was sent. Please verify and then sign in.'}
-          </p>
-          <Link href={`/${locale}/auth/login`}>
-            <Button variant="gold">{t('signIn')}</Button>
-          </Link>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -109,7 +79,7 @@ export default function RegisterPage() {
               placeholder="••••••••"
               required
               autoComplete="new-password"
-              helperText={locale === 'fa' ? 'حداقل ۸ کاراکتر' : 'Minimum 8 characters'}
+              helperText={locale === 'fa' ? 'حداقل ۶ کاراکتر' : 'Minimum 6 characters'}
             />
 
             {error && (
@@ -130,6 +100,12 @@ export default function RegisterPage() {
             </Link>
           </div>
         </div>
+
+        <p className="text-center text-xs text-[#6B6560] mt-6">
+          {locale === 'fa'
+            ? 'نسخه نمایشی — اطلاعات فقط در مرورگر شما ذخیره می‌شود'
+            : 'Demo mode — data is stored only in your browser'}
+        </p>
       </div>
     </div>
   )

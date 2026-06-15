@@ -42,7 +42,7 @@ function getAvailableDates() {
   return dates
 }
 
-type Step = 'service' | 'datetime' | 'info' | 'pay'
+type Step = 'service' | 'datetime' | 'info' | 'pay' | 'success'
 
 export default function BookPage() {
   const t = useTranslations('booking')
@@ -81,29 +81,11 @@ export default function BookPage() {
   const handlePayment = async () => {
     if (!service || !selectedDate || !selectedTime) return
     setLoading(true)
-    try {
-      const res = await fetch('/api/payments/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          serviceId: selectedService,
-          date: selectedDate.toISOString(),
-          time: selectedTime,
-          platform,
-          name,
-          email,
-          phone,
-          notes,
-          locale,
-        }),
-      })
-      const data = await res.json()
-      if (data.paymentUrl) {
-        window.location.href = data.paymentUrl
-      }
-    } catch {
-      setLoading(false)
-    }
+    // Demo mode — simulate a payment gateway round-trip, then confirm.
+    // Replace this with a real ZarinPal redirect once a merchant ID is set.
+    await new Promise((resolve) => setTimeout(resolve, 1200))
+    setLoading(false)
+    setStep('success')
   }
 
   return (
@@ -354,6 +336,54 @@ export default function BookPage() {
                   <Button variant="gold" className="flex-1" loading={loading} onClick={handlePayment}>
                     {t('pay')}
                   </Button>
+                </div>
+
+                <p className="text-[11px] text-[#6B6560] mt-4 text-center opacity-70">
+                  {locale === 'fa'
+                    ? 'نسخه نمایشی — پرداخت واقعی انجام نمی‌شود'
+                    : 'Demo mode — no real payment is processed'}
+                </p>
+              </div>
+            )}
+
+            {/* Step 5: Success */}
+            {step === 'success' && service && selectedDate && selectedTime && (
+              <div className="text-center py-4">
+                <div className="w-16 h-16 rounded-full bg-[rgba(201,168,76,0.12)] flex items-center justify-center mx-auto mb-6 gold-border">
+                  <svg className="w-8 h-8 text-[#C9A84C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+
+                <h2 className="text-2xl font-bold text-[#F7F3EE] mb-3">{t('success')}</h2>
+                <p className="text-[#9B9489] mb-8">{t('successMessage')}</p>
+
+                {/* Summary */}
+                <div className="bg-[#111] rounded-lg p-5 mb-8 space-y-3 border border-[rgba(201,168,76,0.1)] text-start">
+                  {[
+                    { label: locale === 'fa' ? 'نوع جلسه' : 'Session', value: t(service.nameKey) },
+                    { label: locale === 'fa' ? 'تاریخ' : 'Date', value: formatDate(selectedDate) },
+                    { label: locale === 'fa' ? 'ساعت' : 'Time', value: selectedTime },
+                    { label: locale === 'fa' ? 'پلتفرم' : 'Platform', value: platform === 'google_meet' ? t('googleMeet') : t('zoom') },
+                  ].map(({ label, value }) => (
+                    <div key={label} className="flex justify-between text-sm">
+                      <span className="text-[#6B6560]">{label}</span>
+                      <span className="text-[#D6D0C8]">{value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link href={`/${locale}/dashboard`}>
+                    <Button variant="gold" className="w-full sm:w-auto">
+                      {locale === 'fa' ? 'مشاهده داشبورد' : 'View Dashboard'}
+                    </Button>
+                  </Link>
+                  <Link href={`/${locale}`}>
+                    <Button variant="outline" className="w-full sm:w-auto">
+                      {locale === 'fa' ? 'صفحه اصلی' : 'Home'}
+                    </Button>
+                  </Link>
                 </div>
               </div>
             )}
