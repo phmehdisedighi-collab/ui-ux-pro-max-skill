@@ -1,0 +1,161 @@
+{
+  "brand": {
+    "name": "Owj",
+    "tagline": "Take your clinic to the peak",
+    "academy": "Clinic Growth Academy · Mehdi Sedighi"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "booking": "Book a Session",
+    "login": "Log in",
+    "register": "Sign up",
+    "dashboard": "Dashboard",
+    "logout": "Log out",
+    "freeConsult": "Free Consultation"
+  },
+  "home": {
+    "hero": {
+      "badge": "Clinic Growth Academy",
+      "title": "Take your clinic to the peak",
+      "subtitle": "We make your clinic run even without you — with systems, sales and a stronger team. No slogans, just results.",
+      "ctaPrimary": "Book a session",
+      "ctaSecondary": "About Mehdi Sedighi"
+    },
+    "pain": {
+      "kicker": "Let's be honest",
+      "title": "“If I'm away for a month, my clinic stalls.”",
+      "body": "A clinic that depends on your presence isn't a business — it's a high-pressure job. Most clinics in Iran depend on one person; without them, sales stop.",
+      "points": [
+        "Total dependence of the clinic on you",
+        "Low, unpredictable sales",
+        "A weak team with no system"
+      ]
+    },
+    "solution": {
+      "kicker": "The Owj approach",
+      "title": "The growth triangle",
+      "body": "We turn clinics from a one-person practice into a real business.",
+      "items": [
+        { "title": "System", "desc": "Structure and processes that run the clinic without your constant presence." },
+        { "title": "Sales", "desc": "Predictable, profitable sales — not luck-driven and volatile." },
+        { "title": "Team", "desc": "A team that takes ownership and moves the clinic forward." }
+      ]
+    },
+    "credibility": {
+      "kicker": "Why Owj?",
+      "title": "I speak from the field, not from a book",
+      "body": "I'm Mehdi Sedighi — 15 years as both a clinician and the manager of Isfahan's largest physiotherapy center. I've lived this pain myself and have a practical path, not a textbook prescription.",
+      "stats": [
+        { "value": "15 yrs", "label": "clinical & management experience" },
+        { "value": "Largest", "label": "physiotherapy center in Isfahan" },
+        { "value": "Sepahan", "label": "former team physiotherapist" }
+      ]
+    },
+    "results": {
+      "kicker": "Results",
+      "title": "A clinic that runs without you",
+      "items": [
+        "Your clinic no longer depends on your constant presence.",
+        "Regular, profitable sales — not luck.",
+        "An independent team that moves the work forward.",
+        "Peace of mind and free time to grow."
+      ]
+    },
+    "cta": {
+      "title": "Ready to take your clinic to the peak?",
+      "body": "Book a session and let's draw your clinic's growth map together.",
+      "button": "Book now"
+    }
+  },
+  "about": {
+    "title": "About Mehdi Sedighi",
+    "lead": "Clinician-manager and founder of Owj Academy.",
+    "body": "15 years as a clinician and manager of Isfahan's largest physiotherapy and corrective-exercise center, former physiotherapist of the Sepahan team. Today I help clinic owners build a clinic that runs profitably and independently — even without their constant presence — through systems, sales training and team leadership. I speak from the field, not from a book.",
+    "photoPlaceholder": "Photo coming soon",
+    "resumeSoon": "Full résumé will be added here soon."
+  },
+  "services": {
+    "title": "Owj Services",
+    "lead": "Growth isn't luck; it's built. We start with consultation.",
+    "consult": {
+      "title": "Private clinic-growth consultation",
+      "desc": "A one-on-one online session with Mehdi Sedighi to map your clinic's growth: system, sales and team.",
+      "cta": "Book & pay"
+    },
+    "soon": {
+      "title": "Coming soon",
+      "items": ["Specialized webinars", "Online classes", "Comprehensive growth courses"]
+    }
+  },
+  "auth": {
+    "loginTitle": "Log in",
+    "registerTitle": "Create an account",
+    "fullName": "Full name",
+    "email": "Email",
+    "phone": "Mobile number",
+    "password": "Password",
+    "loginButton": "Log in",
+    "registerButton": "Sign up",
+    "haveAccount": "Have an account? Log in",
+    "noAccount": "No account? Sign up",
+    "loggingIn": "Logging in...",
+    "registering": "Signing up...",
+    "checkEmail": "Account created. Check your email to activate it."
+  },
+  "booking": {
+    "title": "Book a session",
+    "step1": "1 · Choose package",
+    "step2": "2 · Choose time",
+    "step3": "3 · Payment",
+    "selectPackage": "Choose a consultation package",
+    "selectSlot": "Pick an available time",
+    "noSlots": "No slots available yet. New times will be added soon.",
+    "minutes": "min",
+    "sessions": "sessions",
+    "toman": "Toman",
+    "payButton": "Pay & confirm booking",
+    "processing": "Redirecting to gateway...",
+    "loginRequired": "Please log in to book.",
+    "summary": "Booking summary",
+    "successTitle": "Payment successful ✅",
+    "successBody": "Your booking is confirmed. The online meeting link will be sent to you.",
+    "meetLink": "Online meeting link",
+    "failedTitle": "Payment failed",
+    "failedBody": "Unfortunately the payment didn't complete. Any deducted amount will be refunded within 72 hours.",
+    "backHome": "Back home",
+    "goDashboard": "View bookings"
+  },
+  "dashboard": {
+    "title": "My dashboard",
+    "welcome": "Welcome",
+    "myBookings": "My bookings",
+    "noBookings": "You have no bookings yet.",
+    "status": {
+      "pending": "Awaiting payment",
+      "paid": "Paid",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+    "bookNew": "Book a new session"
+  },
+  "admin": {
+    "title": "Admin panel",
+    "tabs": { "slots": "Slots", "bookings": "Bookings", "packages": "Packages" },
+    "addSlot": "Add slot",
+    "slotStart": "Start",
+    "slotEnd": "End",
+    "save": "Save",
+    "delete": "Delete",
+    "noAccess": "Admins only."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "slogan": "Take your clinic to the peak"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong. Try again."
+  }
+}
