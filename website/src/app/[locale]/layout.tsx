@@ -2,18 +2,10 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Vazirmatn } from 'next/font/google';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import '../globals.css';
-
-const vazir = Vazirmatn({
-  subsets: ['arabic', 'latin'],
-  weight: ['400', '500', '700', '900'],
-  display: 'swap',
-  variable: '--font-vazir',
-});
 
 export const metadata: Metadata = {
   title: 'اوج | کلینیکت را به اوج برسان',
@@ -42,7 +34,13 @@ export default async function LocaleLayout({
   const dir = locale === 'fa' ? 'rtl' : 'ltr';
 
   return (
-    <html lang={locale} dir={dir} className={vazir.variable}>
+    <html lang={locale} dir={dir}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.fontcdn.ir/Font/Persian/IRANSans/IRANSans.css"
+        />
+      </head>
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">

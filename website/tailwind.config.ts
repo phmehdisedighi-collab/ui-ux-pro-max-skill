@@ -51,7 +51,7 @@ const config: Config = {
         ink: '#1B2330',       // ذغالی متن
       },
       fontFamily: {
-        sans: ['Vazirmatn', 'system-ui', 'sans-serif'],
+        sans: ['IRANSans', 'Vazirmatn', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'owj-gradient': 'linear-gradient(90deg, #E5A823 0%, #F2682C 100%)',
