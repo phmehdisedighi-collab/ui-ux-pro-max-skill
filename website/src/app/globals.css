@@ -10,6 +10,46 @@
   --teal: #0fa3a3;
   --gray-light: #f4f6fa;
   --ink: #1b2330;
+
+  /* shadcn/ui tokens — نگاشت به پالت اوج */
+  --background: 0 0% 100%;
+  --foreground: 220 30% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 30% 15%;
+  --primary: 20 88% 56%;        /* orange اوج */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 20% 96%;
+  --secondary-foreground: 220 30% 15%;
+  --muted: 220 20% 96%;
+  --muted-foreground: 220 10% 50%;
+  --accent: 220 20% 94%;
+  --accent-foreground: 220 30% 15%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 90%;
+  --input: 220 13% 90%;
+  --ring: 20 88% 56%;
+  --radius: 0.875rem;
+}
+
+.dark {
+  --background: 222 47% 8%;
+  --foreground: 210 20% 92%;
+  --card: 222 47% 10%;
+  --card-foreground: 210 20% 92%;
+  --primary: 20 88% 56%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 222 30% 16%;
+  --secondary-foreground: 210 20% 92%;
+  --muted: 222 30% 14%;
+  --muted-foreground: 215 15% 55%;
+  --accent: 222 30% 16%;
+  --accent-foreground: 210 20% 92%;
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 222 20% 18%;
+  --input: 222 20% 18%;
+  --ring: 20 88% 56%;
 }
 
 @layer base {

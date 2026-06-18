@@ -3,6 +3,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { MountainLogo } from '@/components/MountainLogo';
 import { SectionHeading } from '@/components/SectionHeading';
+import { HeroWave } from '@/components/HeroWave';
 
 export default function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
@@ -173,6 +174,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       {/* ── دعوت به اقدام ── */}
       <section className="section pb-24 pt-20">
         <div className="relative overflow-hidden rounded-3xl bg-surmei px-8 py-16 text-center text-white shadow-owj">
+          <HeroWave />
           <div className="pointer-events-none absolute -top-16 ltr:-right-16 rtl:-left-16 h-64 w-64 rounded-full bg-owj-gradient opacity-20 blur-3xl" />
           <span className="inline-block rounded-full bg-white/10 px-4 py-1 text-sm font-bold text-gold">
             همین الان شروع کن
