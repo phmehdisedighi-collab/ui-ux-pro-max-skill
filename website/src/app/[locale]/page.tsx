@@ -4,6 +4,7 @@ import { Link } from '@/i18n/routing';
 import { MountainLogo } from '@/components/MountainLogo';
 import { SectionHeading } from '@/components/SectionHeading';
 import { HeroWave } from '@/components/HeroWave';
+import { ProgramsCarousel } from '@/components/ProgramsCarousel';
 
 export default function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
@@ -86,6 +87,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           ))}
         </div>
       </section>
+
+      {/* ── اسلایدر برنامه‌ها ── */}
+      <ProgramsCarousel />
 
       {/* ── درد مخاطب ── */}
       <section className="section py-20">
