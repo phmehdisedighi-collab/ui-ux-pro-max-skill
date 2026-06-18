@@ -30,9 +30,9 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-surmei/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-black/10 bg-white/95 backdrop-blur">
       <nav className="section flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-2.5 text-white">
+        <Link href="/" className="flex items-center gap-2.5 text-surmei">
           <MountainLogo className="h-8 w-8" />
           <span className="text-xl font-black">{tb('name')}</span>
         </Link>
@@ -42,8 +42,8 @@ export function Header() {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm font-bold transition hover:text-gold ${
-                pathname === l.href ? 'text-gold' : 'text-white/80'
+              className={`text-sm font-bold transition hover:text-orange ${
+                pathname === l.href ? 'text-orange' : 'text-ink/70'
               }`}
             >
               {l.label}
@@ -55,7 +55,7 @@ export function Header() {
           <LocaleSwitcher />
           <Link
             href={signedIn ? '/dashboard' : '/login'}
-            className="hidden text-sm font-bold text-white/80 transition hover:text-gold sm:block"
+            className="hidden text-sm font-bold text-ink/70 transition hover:text-orange sm:block"
           >
             {signedIn ? t('dashboard') : t('login')}
           </Link>
@@ -63,7 +63,7 @@ export function Header() {
             {t('freeConsult')}
           </Link>
           <button
-            className="text-white md:hidden"
+            className="text-surmei md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="menu"
           >
@@ -75,14 +75,14 @@ export function Header() {
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-surmei px-5 py-4 md:hidden">
+        <div className="border-t border-black/10 bg-white px-5 py-4 shadow-md md:hidden">
           <div className="flex flex-col gap-3">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-sm font-bold text-white/85"
+                className="text-sm font-bold text-ink/80 hover:text-orange"
               >
                 {l.label}
               </Link>
@@ -90,7 +90,7 @@ export function Header() {
             <Link
               href={signedIn ? '/dashboard' : '/login'}
               onClick={() => setOpen(false)}
-              className="text-sm font-bold text-gold"
+              className="text-sm font-bold text-orange"
             >
               {signedIn ? t('dashboard') : t('login')}
             </Link>

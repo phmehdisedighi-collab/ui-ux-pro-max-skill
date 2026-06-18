@@ -11,38 +11,38 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-20 bg-surmei text-white">
+    <footer className="mt-20 bg-graylight text-ink">
       <div className="section grid gap-8 py-12 sm:grid-cols-2 md:grid-cols-4">
         <div className="sm:col-span-2">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 text-surmei">
             <MountainLogo className="h-9 w-9" />
             <span className="text-2xl font-black">{tb('name')}</span>
           </div>
-          <p className="mt-3 max-w-sm text-sm text-white/70">{tb('academy')}</p>
+          <p className="mt-3 max-w-sm text-sm text-ink/60">{tb('academy')}</p>
           <p className="mt-2 bg-owj-gradient bg-clip-text font-black text-transparent">
             {t('slogan')}
           </p>
         </div>
 
         <div>
-          <h4 className="mb-3 text-sm font-black text-gold">{tn('services')}</h4>
-          <ul className="space-y-2 text-sm text-white/75">
-            <li><Link href="/services" className="hover:text-gold">{tn('services')}</Link></li>
-            <li><Link href="/booking" className="hover:text-gold">{tn('booking')}</Link></li>
-            <li><Link href="/about" className="hover:text-gold">{tn('about')}</Link></li>
+          <h4 className="mb-3 text-sm font-black text-surmei">{tn('services')}</h4>
+          <ul className="space-y-2 text-sm text-ink/60">
+            <li><Link href="/services" className="hover:text-orange transition">{tn('services')}</Link></li>
+            <li><Link href="/booking" className="hover:text-orange transition">{tn('booking')}</Link></li>
+            <li><Link href="/about" className="hover:text-orange transition">{tn('about')}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="mb-3 text-sm font-black text-gold">{tn('login')}</h4>
-          <ul className="space-y-2 text-sm text-white/75">
-            <li><Link href="/login" className="hover:text-gold">{tn('login')}</Link></li>
-            <li><Link href="/register" className="hover:text-gold">{tn('register')}</Link></li>
-            <li><Link href="/dashboard" className="hover:text-gold">{tn('dashboard')}</Link></li>
+          <h4 className="mb-3 text-sm font-black text-surmei">{tn('login')}</h4>
+          <ul className="space-y-2 text-sm text-ink/60">
+            <li><Link href="/login" className="hover:text-orange transition">{tn('login')}</Link></li>
+            <li><Link href="/register" className="hover:text-orange transition">{tn('register')}</Link></li>
+            <li><Link href="/dashboard" className="hover:text-orange transition">{tn('dashboard')}</Link></li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-5 text-center text-xs text-white/60">
+      <div className="border-t border-black/10 py-5 text-center text-xs text-ink/50">
         © {year} {tb('name')} · {t('rights')}
       </div>
     </footer>
